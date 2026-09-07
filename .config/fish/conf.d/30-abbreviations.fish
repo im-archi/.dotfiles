@@ -5,51 +5,51 @@
 status is-interactive; or return
 
 # --- Git ---------------------------------------------------------------
-abbr -a g    git
-abbr -a gs   'git status'
-abbr -a gd   'git diff'
-abbr -a gds  'git diff --staged'
-abbr -a ga   'git add'
-abbr -a gap  'git add --patch'
-abbr -a gb   'git branch'
-abbr -a gsw  'git switch'
-abbr -a gco  'git checkout'
-abbr -a gcb  'git checkout -b'
-abbr -a gcm  'git commit -m'
-abbr -a gca  'git commit --amend --no-edit'
-abbr -a gp   'git push'
-abbr -a gpf  'git push --force-with-lease'
-abbr -a gl   'git pull'
-abbr -a glo  'git log --oneline --graph --decorate -20'
+abbr -a g git
+abbr -a gs 'git status'
+abbr -a gd 'git diff'
+abbr -a gds 'git diff --staged'
+abbr -a ga 'git add'
+abbr -a gap 'git add --patch'
+abbr -a gb 'git branch'
+abbr -a gsw 'git switch'
+abbr -a gco 'git checkout'
+abbr -a gcb 'git checkout -b'
+abbr -a gcm 'git commit -m'
+abbr -a gca 'git commit --amend --no-edit'
+abbr -a gp 'git push'
+abbr -a gpf 'git push --force-with-lease'
+abbr -a gl 'git pull'
+abbr -a glo 'git log --oneline --graph --decorate -20'
 abbr -a glog 'git log --oneline --graph --decorate --all'
-abbr -a gst  'git stash'
-abbr -a gsp  'git stash pop'
-abbr -a grh  'git reset --hard'
+abbr -a gst 'git stash'
+abbr -a gsp 'git stash pop'
+abbr -a grh 'git reset --hard'
 abbr -a gwip 'git commit -am wip'
 abbr -a gunwip 'git reset --soft HEAD~1'
 abbr -a gprune 'git fetch --prune'
 
 # --- Navigation --------------------------------------------------------
-abbr -a ..    'cd ..'
-abbr -a ...   'cd ../..'
-abbr -a ....  'cd ../../..'
+abbr -a .. 'cd ..'
+abbr -a ... 'cd ../..'
+abbr -a .... 'cd ../../..'
 abbr -a ..... 'cd ../../../..'
 
 # --- Listings ----------------------------------------------------------
 if type -q eza
-    abbr -a l   'eza --icons'
-    abbr -a ll  'eza --icons -l --git'
-    abbr -a la  'eza --icons -la --git'
-    abbr -a lt  'eza --icons --tree --level=2'
+    abbr -a l 'eza --icons'
+    abbr -a ll 'eza --icons -l --git'
+    abbr -a la 'eza --icons -la --git'
+    abbr -a lt 'eza --icons --tree --level=2'
     abbr -a lta 'eza --icons --tree --level=2 -a'
 else if type -q exa
-    abbr -a l   'exa --icons'
-    abbr -a ll  'exa --icons -l --git'
-    abbr -a la  'exa --icons -la --git'
-    abbr -a lt  'exa --icons --tree --level=2'
+    abbr -a l 'exa --icons'
+    abbr -a ll 'exa --icons -l --git'
+    abbr -a la 'exa --icons -la --git'
+    abbr -a lt 'exa --icons --tree --level=2'
     abbr -a lta 'exa --icons --tree --level=2 -a'
 else
-    abbr -a l  'ls -CF'
+    abbr -a l 'ls -CF'
     abbr -a ll 'ls -lah'
     abbr -a la 'ls -A'
 end
@@ -94,6 +94,7 @@ if type -q brew
 end
 
 if type -q pacman
+    abbr -a pacman 'sudo pacman'
     abbr -a pac 'sudo pacman'
     abbr -a pacs 'pacman -Ss'
     abbr -a paci 'sudo pacman -S'
