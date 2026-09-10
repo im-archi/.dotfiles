@@ -47,3 +47,5 @@ set PROMPT_USER ""
 set PROMPT_HOST ""
 
 set -g __fish_auto_ls_enabled 1
+
+string match -q "$TERM_PROGRAM" "kiro" and . (kiro --locate-shell-integration-path fish)

@@ -19,6 +19,25 @@ local plugins_root = vim.fn.stdpath("config") .. "/lua/plugins"
 ---@type LazySpec[]
 local imports = {}
 
+local function dir_has_lua(dir)
+  local handle = uv.fs_scandir(dir)
+  if not handle then
+    return false
+  end
+  while true do
+    local name, t = uv.fs_scandir_next(handle)
+    if not name then
+      break
+    end
+    local path = dir .. "/" .. name
+    t = t or (uv.fs_stat(path) or {}).type
+    if t == "file" and name:match("%.lua$") and name ~= "init.lua" then
+      return true
+    end
+  end
+  return false
+end
+
 local function scan(dir, mod)
   local handle = uv.fs_scandir(dir)
   if not handle then
@@ -33,7 +52,9 @@ local function scan(dir, mod)
     t = t or (uv.fs_stat(path) or {}).type
     if t == "directory" then
       local submod = mod .. "." .. name
-      imports[#imports + 1] = { import = submod }
+      if dir_has_lua(path) then
+        imports[#imports + 1] = { import = submod }
+      end
       scan(path, submod) -- recurse for nested dirs (e.g. lsp/servers)
     end
   end
