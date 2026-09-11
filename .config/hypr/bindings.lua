@@ -78,3 +78,5 @@ hl.bind("SUPER + SHIFT + TAB", hs.dsp.focus({ workspace = "r-1" }))
 
 -- alt tab omarchy plugin
 dofile(os.getenv("HOME") .. "/.config/omarchy/plugins/io.github.pablo-merino.altswitch/altswitch.lua")
+
+hl.unbind("SUPER + D")

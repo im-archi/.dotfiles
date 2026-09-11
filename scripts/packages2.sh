@@ -1,5 +1,5 @@
 #Some packages are missing for emacs to work
-yay -Syu man-db rofi-git ranger neovim keepassxc syncthing zen-browser-bin ttf-jetbrains-mono-nerd fish obsidian visual-studio-code-bin opentabletdriver qbittorrent exa anki kdeconnect firefox librewolf-bin stow emacs netdiscover ttf-ms-win11-auto filezilla bat git-delta xournalpp fzf --needed
+yay -Syu man-db rofi-git ranger neovim keepassxc syncthing zen-browser-bin ttf-jetbrains-mono-nerd fish obsidian visual-studio-code-bin opentabletdriver qbittorrent eza anki kdeconnect firefox librewolf-bin stow emacs netdiscover ttf-ms-win11-auto filezilla bat git-delta xournalpp fzf --needed
 systemctl --user enable syncthing.service
 systemctl --user start syncthing.service
 echo "Chainging shell"

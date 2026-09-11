@@ -9,13 +9,18 @@ if type -q gh
     alias gce 'gh copilot explain'
 end
 
-# --- File listing (exa replaces ls) ------------------------------------
-if type -q exa
-    alias ls 'exa --icons --colour=always'
-    alias la 'exa --icons --colour=always -la'
+# --- File listing (eza replaces ls) ------------------------------------
+if type -q eza
+    alias ls 'eza --icons'
+    alias ll 'eza --icons -l --git'
+    alias la 'eza --icons -la --git'
+else
+    alias l 'ls -CF'
+    alias ll 'ls -lah'
+    alias la 'ls -A'
 end
 
 if type -q bat
-    abbr -a cat  bat
+    abbr -a cat bat
     alias bat 'bat --theme=ansi --paging=never'
 end

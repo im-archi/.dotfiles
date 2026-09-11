@@ -35,25 +35,6 @@ abbr -a ... 'cd ../..'
 abbr -a .... 'cd ../../..'
 abbr -a ..... 'cd ../../../..'
 
-# --- Listings ----------------------------------------------------------
-if type -q eza
-    abbr -a l 'eza --icons'
-    abbr -a ll 'eza --icons -l --git'
-    abbr -a la 'eza --icons -la --git'
-    abbr -a lt 'eza --icons --tree --level=2'
-    abbr -a lta 'eza --icons --tree --level=2 -a'
-else if type -q exa
-    abbr -a l 'exa --icons'
-    abbr -a ll 'exa --icons -l --git'
-    abbr -a la 'exa --icons -la --git'
-    abbr -a lt 'exa --icons --tree --level=2'
-    abbr -a lta 'exa --icons --tree --level=2 -a'
-else
-    abbr -a l 'ls -CF'
-    abbr -a ll 'ls -lah'
-    abbr -a la 'ls -A'
-end
-
 # --- Editor ------------------------------------------------------------
 if type -q nvim
     abbr -a n nvim
