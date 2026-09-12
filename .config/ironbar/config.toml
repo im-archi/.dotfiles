@@ -3,14 +3,10 @@
 # Ironbar configuration -- modern minimal theme with auto-hide.
 # Module shapes mirror the upstream JSON schema (https://github.com/JakeStanger/ironbar/wiki).
 #
-# Required runtime deps:
-#   - Font:  "JetBrainsMono Nerd Font" (for the glyphs below)
-#   - Icons: any GTK icon theme (default uses Adwaita)
-#   - Tools: rofi (menu), wlogout/systemctl (power menu), pipewire/pulseaudio (volume),
-#            NetworkManager (network), wl-clipboard or xclip (clipboard).
+# Configured for Omarchy Quattro (Quickshell IPC integration).
 
 # ─── Bar geometry ──────────────────────────────────────────────────────────
-position       = "bottom"
+position       = "top"
 anchor_to_edge = true
 icon_theme     = "Adwaita"
 
@@ -19,10 +15,17 @@ icon_theme     = "Adwaita"
 autohide = 500
 
 # ─── Start (left) ──────────────────────────────────────────────────────────
+# Omarchy menu launcher (left = Omarchy menu, right = terminal)
 [[start]]
-type  = "menu"
-label = "󱓞"
+type            = "custom"
+name            = "omarchy-menu"
+class           = "menu"
+on_click_right  = "!omarchy-launch-terminal"
+bar             = [
+    { type = "button", label = "󱓞", on_click = "!omarchy-menu toggle root" },
+]
 
+# Hyprland workspaces
 [[start]]
 type         = "workspaces"
 sort         = "label"
@@ -30,55 +33,75 @@ all_monitors = false
 name_map = { "1" = "1", "2" = "2", "3" = "3", "4" = "4", "5" = "5", "6" = "6", "7" = "7", "8" = "8", "9" = "9", "10" = "10", "11" = "11", "12" = "12", "13" = "13", "14" = "14", "15" = "15", "16" = "16", "17" = "17", "18" = "18", "19" = "19", "20" = "20", "21" = "1", "22" = "2", "23" = "3", "24" = "4", "25" = "5", "26" = "6", "27" = "7", "28" = "8", "29" = "9", "30" = "10", "31" = "11", "32" = "12", "33" = "13", "34" = "14", "35" = "15", "36" = "16", "37" = "17", "38" = "18", "39" = "19", "40" = "20", "41" = "1", "42" = "2", "43" = "3", "44" = "4", "45" = "5", "46" = "6", "47" = "7", "48" = "8", "49" = "9", "50" = "10", "51" = "11", "52" = "12", "53" = "13", "54" = "14", "55" = "15", "56" = "16", "57" = "17", "58" = "18", "59" = "19", "60" = "20" }
 on_click = "workspace \"{id}\""
 
+# App taskbar launcher
 [[start]]
 type     = "launcher"
 truncate = { mode = "end", max_length = 30 }
 
 # ─── End (right) ───────────────────────────────────────────────────────────
+# Always-visible right widgets: weather, volume, network, battery, clock, plus dropdown
+
+# 1. Weather forecast popup
 [[end]]
 type  = "custom"
-name  = "bluetooth"
+name  = "weather"
+class = "weather"
 bar   = [
-    { type = "button", label = "󰂯", on_click = "!omarchy-launch-bluetooth" },
+    { type = "button", label = "󰖐", on_click = "!omarchy-shell shell toggle omarchy.weather" },
 ]
 
+# 2. Audio volume (left-click toggles Omarchy audio mixer)
 [[end]]
-type     = "sys_info"
-format   = ["󰍛 {cpu_percent}%", "🎞 {memory_percent}%"]
-interval = { cpu = 1, memory = 5 }
+type          = "volume"
+on_click_left = "omarchy-shell shell toggle omarchy.audio"
 
+# 3. Network / Wi-Fi (hidden if no Wi-Fi card present)
 [[end]]
-type      = "clipboard"
-max_items = 5
-truncate  = { mode = "end", length = 30 }
+type    = "custom"
+name    = "network"
+class   = "network"
+show_if = "ls -d /sys/class/net/*/wireless 2>/dev/null"
+bar     = [
+    { type = "button", label = "󰖩", on_click = "!omarchy-shell shell toggle omarchy.network" },
+]
 
+# 4. Battery (hidden if no battery present; left-click toggles Omarchy power panel)
 [[end]]
-type = "volume"
+type          = "battery"
+class         = "battery"
+show_if       = "ls -d /sys/class/power_supply/BAT* 2>/dev/null"
+on_click_left = "omarchy-shell shell toggle omarchy.power"
 
+# 5. Date & Calendar (left-click toggles Omarchy calendar popup)
 [[end]]
-type = "battery"
-class = "battery"
+type          = "clock"
+format        = "%a %d %b   %H:%M"
+format_popup  = "%A, %B %-d %Y -- %H:%M:%S"
+on_click_left = "omarchy-shell shell toggle omarchy.clock"
 
-# Wi-Fi: Omarchy uses iwd+impala instead of NetworkManager.
-# This custom button launches impala in a floating terminal.
+# 6. Dropdown menu for all other right widgets
 [[end]]
 type  = "custom"
-name  = "wifi-impala"
-class = "wifi-impala"
+name  = "dropdown"
+class = "dropdown"
 bar   = [
-    { type = "button", label = "󰖩", on_click = "!omarchy-launch-wifi" },
+    { type = "button", name = "dropdown-btn", label = "󰅀", tooltip = "More widgets", on_click = "popup:toggle" },
 ]
-
-# ─── Power menu (custom widget with popup) ─────────────────────────────────
-[[end]]
-type  = "custom"
-name  = "power-menu"
-class = "power-menu"
-bar = [
-    { type = "button", name = "power-btn", label = "", on_click = "!omarchy-menu system" },
+popup = [
+    { type = "box", orientation = "vertical", widgets = [
+        { type = "box", orientation = "horizontal", class = "dropdown-row", widgets = [
+            { type = "button", class = "agents", label = "󰚩 Agents", on_click = "!omarchy-shell shell toggle omarchy.agents" },
+            { type = "button", class = "bluetooth", label = "󰂯 Bluetooth", on_click = "!omarchy-shell shell toggle omarchy.bluetooth" },
+            { type = "button", class = "monitor", label = "󰃠 Display", on_click = "!omarchy-shell shell toggle omarchy.monitor" },
+        ]},
+        { type = "box", orientation = "horizontal", class = "dropdown-row", widgets = [
+            { type = "button", class = "media", label = "󰝚 Media", on_click = "!omarchy-shell shell toggle omarchy.media" },
+            { type = "button", class = "tailscale", label = "󰖂 Tailscale", on_click = "!omarchy-shell shell toggle omarchy.tailscale" },
+            { type = "button", class = "system-update", label = "󰑐 Update", on_click = "!omarchy-launch-floating-terminal-with-presentation omarchy-update" },
+            { type = "button", class = "power-menu", label = "󰐥 Power", on_click = "!omarchy-menu toggle system" },
+        ]},
+    ]},
+    { type = "sys_info", format = ["󰍛 {cpu_percent}%", "🎞 {memory_percent}%"] },
+    { type = "clipboard", max_items = 5 },
+    { type = "tray" },
 ]
-
-[[end]]
-type         = "clock"
-format       = "%a %d %b   %H:%M"
-format_popup = "%A, %B %-d %Y -- %H:%M:%S"

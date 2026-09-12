@@ -1,29 +1,42 @@
 -- Change the default Omarchy look'n'feel.
 
 -- https://wiki.hypr.land/Configuring/Basics/Variables/#general
--- hl.config({
---   general = {
---     -- No gaps between windows or borders.
---     gaps_in = 0,
---     gaps_out = 0,
---     border_size = 0,
---
---     -- Change to niri-like side-scrolling layout.
---     layout = "scrolling",
---   },
--- })
+hl.config({
+	general = {
+		--     -- No gaps between windows or borders.
+		gaps_in = 0,
+		gaps_out = 0,
+		border_size = 1,
+		--
+		--     -- Change to niri-like side-scrolling layout.
+		--     layout = "scrolling",
+	},
+})
 
 -- https://wiki.hypr.land/Configuring/Basics/Variables/#decoration
--- hl.config({
---   decoration = {
---     -- Use round window corners.
---     rounding = 8,
---
---     -- Dim unfocused windows (0.0 = no dim, 1.0 = fully dimmed).
---     dim_inactive = true,
---     dim_strength = 0.15,
---   },
--- })
+hl.config({
+	decoration = {
+		-- Use round window corners.
+		rounding = 0,
+		active_opacity = 1.0,
+		inactive_opacity = 1.0,
+		-- screen_shader = "~/.config/hypr/shaders/almost_bw.frag",
+		-- Dim unfocused windows (0.0 = no dim, 1.0 = fully dimmed).
+		dim_inactive = false,
+		dim_strength = 0,
+	},
+})
+
+hl.config({
+	master = {
+		orientation = "center",
+		new_status = "slave",
+		allow_small_split = true,
+		mfact = 0.333,
+		drop_at_cursor = true,
+		always_keep_position = true,
+	},
+})
 
 -- https://wiki.hypr.land/Configuring/Basics/Variables/#animations
 -- hl.config({
@@ -48,3 +61,8 @@
 --     column_width = 0.97,
 --   },
 -- })
+-- Change the default Omarchy look'n'feel
+local hs = require("hyprsplit")
+
+-- Hyprsplit config (replaces plugin { hyprsplit { } })
+hs.config({ num_workspaces = 20 })

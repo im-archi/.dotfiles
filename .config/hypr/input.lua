@@ -6,7 +6,7 @@
 -- hl.config({
 --   input = {
 --     -- Use multiple keyboard layouts and switch between them with Left Alt + Right Alt.
---     kb_layout = "us,dk,eu",
+	kb_layout = "us"
 --     kb_options = "compose:caps,shift:both_capslock_cancel,grp:alts_toggle",
 --
 --     -- Use a specific keyboard variant if needed (e.g. intl for international keyboards).
@@ -14,14 +14,14 @@
 --
 --     -- Change speed of keyboard repeat.
 --     repeat_rate = 40,
---     repeat_delay = 250,
+    repeat_delay = 550
 --
 --     -- Start with numlock on by default.
 --     numlock_by_default = true,
 --
 --     -- Increase sensitivity for mouse/trackpad (default: 0).
---     sensitivity = 0.35,
---
+    sensitivity = 1.0
+	scroll_factor = 3.4
 --     -- Turn off mouse acceleration (default: adaptive).
 --     accel_profile = "flat",
 --
