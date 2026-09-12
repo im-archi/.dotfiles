@@ -27,6 +27,13 @@
 -- o.bind("SUPER + SHIFT + S", nil, "omarchy-capture-screenshot")
 -- o.bind("SUPER + H", nil, "voxtype record toggle")
 -- o.bind("SUPER + PERIOD", nil, "omarchy-shell shell toggle omarchy.emojis")
+
+-- Unbind used bindings
+
+hl.unbind("SUPER + M")
+hl.unbind("SUPER + N")
+hl.unbind("SUPER + SHIFT + N")
+
 -- Fullscreen (maximize mode)
 hl.bind("SUPER + M", hl.dsp.window.fullscreen({ mode = "maximized" }))
 
@@ -56,11 +63,11 @@ hl.bind("SUPER + SHIFT + N", function()
 end)
 
 -- Misc bindings
-hl.unbind("SUPER + SHIFT + SPACE")
+-- hl.unbind("SUPER + SHIFT + SPACE")
 o.bind("SUPER + ALT + CTRL + 4", "Screenshot with editing", { launch = "omarchy-capture-screenshot" })
 -- o.bind("SUPER + CTRL + 4", "Screenshot to clipboard", { launch = "omarchy-cmd-screenshot smart clipboard" })
 
 -- alt tab omarchy plugin
-dofile(os.getenv("HOME") .. "/.config/omarchy/plugins/io.github.pablo-merino.altswitch/altswitch.lua")
+-- dofile(os.getenv("HOME") .. "/.config/omarchy/plugins/io.github.pablo-merino.altswitch/altswitch.lua")
 
-hl.unbind("SUPER + D")
+hl.unbind("SUPER + S")

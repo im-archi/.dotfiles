@@ -8,6 +8,8 @@ clipboard-read = allow
 # font-family = "Noto Emoji"
 font-family = "JetBrainsMono Nerd Font"
 font-family = "Noto Emoji"
+font-size = 12
+
 # freetype-load-flags = monochrome
 # Try disabling common color features
 # font-feature = -colr

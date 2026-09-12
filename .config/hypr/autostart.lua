@@ -3,6 +3,7 @@
 -- Wallpapers
 -- o.launch_on_start("hyprpm reload -n")
 -- o.launch_on_start(' sh -c "sleep 3 && killall waybar"')
+o.launch_on_start(' sh -c "sleep 3 && killall waybar"')
 o.launch_on_start("ironbar")
 
 -- Check if this need to be added:

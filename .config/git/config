@@ -1,7 +1,7 @@
 [user]
 	# Identity stamped on every commit. Change per-repo with `git config user.email ...`
-	name = Archi
-  email = exmaple@com
+  # name = Your Name
+  # email = yourmail@example.com
 
 [init]
 	# Name used for the initial branch of new repos (`git init`).
@@ -14,6 +14,7 @@
 	#   -R: pass through color escape codes so `git diff` stays colored
 	#   -X: don't clear the screen on exit (output stays visible in terminal)
 	pager = delta
+	; pager =  cat
 
 	# Warn when committing these whitespace issues:
 	#   trailing-space: spaces/tabs at end of line
@@ -31,6 +32,9 @@
 	# macOS filesystems decompose Unicode filenames. This keeps them composed
 	# so filenames stay consistent across macOS/Linux. Harmless on Linux.
 	precomposeUnicode = true
+
+  #global gitignore
+  excludesfile = ~/.gitignore_global
 
 [column]
 	# Let Git format multi-item output (like `git branch`) into columns
@@ -268,13 +272,19 @@
 
 
 	# --- open show in nvim ---
-    ; nshow = -c core.pager='nvim -R -' show
+ nshow = -c core.pager='nvim -R -' show
 
 [filter "lfs"]
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
 	clean = git-lfs clean -- %f
+
+
+# --- for local configs ---
+[include]
+path = ~/.gitconfig.local
+
 [credential "https://github.com"]
 	helper = 
 	helper = !/usr/bin/gh auth git-credential

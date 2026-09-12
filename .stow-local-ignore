@@ -7,3 +7,4 @@ misc
 ^/debuggin.h
 ^/split-monitor-workspaces
 ^/.config/misc
+.gitignore
