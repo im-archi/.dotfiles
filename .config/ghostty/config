@@ -1,5 +1,5 @@
 # Dynamic theme colors
-config-file = ?"~/.config/omarchy/current/theme/ghostty.conf"
+config-file = ?"~/.local/state/omarchy/current/theme/ghostty.conf"
 # Ensure clipboard writing is allowed (usually default)
 clipboard-write = allow
 clipboard-read = allow
